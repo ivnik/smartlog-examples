@@ -1,0 +1,35 @@
+project.ext {
+    aspectjVersion = '1.8.13'
+}
+
+apply plugin: 'aspectj'
+
+buildscript {
+    repositories {
+        maven {
+            url "https://maven.eveoh.nl/content/repositories/releases"
+        }
+    }
+
+    dependencies {
+        classpath "nl.eveoh:gradle-aspectj:2.0"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.aspectj:aspectjrt:1.8.9'
+    compile 'io.github.ivnik:smartlog-core:0.0.2'
+    compile 'io.github.ivnik:smartlog-aop:0.0.2'
+    aspectpath 'io.github.ivnik:smartlog-aop:0.0.2'
+    compile 'org.slf4j:slf4j-api:1.7.25'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+}
+
+task demo(type: JavaExec) {
+  classpath = sourceSets.main.runtimeClasspath
+  main = 'org.smartlog.Example'
+}
